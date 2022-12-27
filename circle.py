@@ -1,18 +1,29 @@
 import math
 
 class Circle:
-    def __init__(self, radius: float) -> None: 
+    def init(self, radius):
         self.radius = radius
 
-    def dlina(self) -> float:
-        return 2 * math.pi * self.radius
+    def get_length(self, radius):
+        return round(2 * math.pi * radius, 2)
     
-    def ploshad(self) -> float:
-        return math.pi * self.radius ** 2
+    def get_square(self, radius):
+        return round(math.pi * radius * radius, 2)
 
-circ = Circle(4)
-print(circ.dlina())
-print(circ.ploshad())
+    @classmethod
+    def from_area(cls, area):
+        return cls(math.sqrt(area/math.pi))
 
+    @classmethod
+    def from_length(cls, length):
+        return cls(length/(2*math.pi)) 
 
+circle = Circle(5)
+print(circle.get_length(5))
+print(circle.get_square(5))
 
+circle_from_length = Circle.from_length(31.42)
+print(circle_from_length.radius)
+
+circle_from_area = Circle.from_area(78.54)
+print(circle_from_area.radius)
